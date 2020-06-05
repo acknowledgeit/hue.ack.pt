@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# bundler
+.cache
+
 # testing
 /coverage
 
