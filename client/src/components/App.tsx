@@ -1,16 +1,23 @@
 import * as React from 'react'
-import { Toggle } from './Toggle'
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom'
+
+import { Dashboard } from './Dashboard'
+import { Setup } from './Setup'
+
+const isSetup = () => {
+  return false
+}
 
 export const App = () => (
-  <>
-    <p>Light 1</p>
-    <Toggle onToggle={(on) => console.log('on: ', on)}>
-      <Toggle.Button />
-    </Toggle>
-
-    <p>Light 2</p>
-    <Toggle onToggle={(on) => console.log('on: ', on)}>
-      <Toggle.Button />
-    </Toggle>
-  </>
+  <Router>
+    <Switch>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
+      <Route path="/setup">
+        <Setup />
+      </Route>
+      <Route path="/">{isSetup() ? <Redirect to="/dashboard" /> : <Redirect to="/setup" />}</Route>
+    </Switch>
+  </Router>
 )
