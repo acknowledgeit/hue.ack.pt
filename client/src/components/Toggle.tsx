@@ -5,6 +5,7 @@ type ToggleContextType = {
   on: boolean
   toggle: () => void
 }
+
 const ToggleContext = React.createContext<ToggleContextType>({
   on: false,
   toggle: () => {},
@@ -23,6 +24,7 @@ function useEffectAfterMount(cb: React.EffectCallback, dependencies: React.Depen
 interface ToggleProps {
   onToggle: (on: boolean) => void
 }
+
 export const Toggle: React.FunctionComponent<ToggleProps> & {
   On: typeof ToggleOn
   Off: typeof ToggleOff
@@ -38,6 +40,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> & {
 
   return <ToggleContext.Provider value={value}>{props.children}</ToggleContext.Provider>
 }
+
 Toggle.On = ToggleOn
 Toggle.Off = ToggleOff
 Toggle.Button = ToggleButton

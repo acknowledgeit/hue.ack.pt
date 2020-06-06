@@ -34,7 +34,7 @@
   left: 50%;
 }
 .toggle-btn.toggle-btn-on {
-  background: #86d993;
+  background: #1e90ff;
 }
 .toggle-btn.toggle-btn-on:active {
   box-shadow: none;
