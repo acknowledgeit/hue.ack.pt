@@ -5,35 +5,33 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "develop": "concurrently -r \"npm:type-check:watch\" \"npm:start\"",
     "start": "parcel ./src/index.html",
     "build": "npm run type-check && parcel build ./src/index.html --public-url '/'",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react-router-dom": "^5.1.5",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@testing-library/react": "^10.2.1",
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.6",
+    "@testing-library/jest-dom": "5.9.0",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.11",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
-    "concurrently": "^4.1.0",
-    "jest": "^24.7.1",
-    "jest-dom": "^3.1.3",
-    "jest-extended": "^0.11.1",
+    "jest": "^26.0.1",
+    "jest-extended": "^0.11.5",
     "parcel-bundler": "^1.12.3",
-    "prettier": "^1.17.0",
+    "prettier": "^2.0.5",
     "react-test-renderer": "^16.8.6",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.4.4"
   }
 }
