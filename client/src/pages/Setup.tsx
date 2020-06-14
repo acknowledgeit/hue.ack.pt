@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import Bridge from '../components/Bridge'
 import Config from '../shared/config'
-import LumenCache from '../shared/cache'
 
 interface BridgeInfo {
   id: string
@@ -13,16 +12,18 @@ interface BridgeDetails extends BridgeInfo {
   name: string
 }
 
-const Setup: FunctionComponent = (props) => {
+interface SetupProps {
+  cache: any
+  setCache: any
+}
+
+const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [bridges, setBridges] = useState<BridgeDetails[]>([])
 
   useEffect(() => {
-    // get cached data
-    let cachedState = LumenCache.getCachedState()
-
-    if (cachedState) {
-      setBridges(cachedState.bridges)
+    if (!!cache) {
+      setBridges(cache.bridges)
       setIsLoading(false)
     } else {
       const fetchData = async () => {

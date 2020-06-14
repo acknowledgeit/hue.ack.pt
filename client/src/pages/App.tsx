@@ -36,7 +36,7 @@ export const App = () => {
           <SetupBridge cache={cache} setCache={setCache} />
         </Route>
         <Route path="/setup">
-          <Setup />
+          <Setup cache={cache} setCache={setCache} />
         </Route>
         <Route path="/">
           {isSetup() ? (

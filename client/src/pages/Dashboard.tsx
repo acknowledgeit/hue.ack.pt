@@ -29,14 +29,31 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
     fetchLights()
   }, [])
 
-  const truthy: boolean = true
+  const handleLightChange = async (id: any, state: any) => {
+    // persist state to bridge
+    const request = await fetch(
+      `http://${bridge.internalipaddress}/api/${bridge.username}/lights/${id}/state`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({
+          on: state.on,
+          bri: Number(state.bri),
+        }),
+      }
+    )
+  }
 
   return (
     <>
       <h3>Lights</h3>
 
       {Object.entries(lights).map(([key, value]) => (
-        <Light key={key} id={key} light={value} />
+        <Light
+          key={key}
+          id={key}
+          light={value}
+          onChange={(state) => handleLightChange(key, state)}
+        />
       ))}
     </>
   )
