@@ -1,5 +1,6 @@
+import React from 'react'
+
 import './switch.styles.css'
-import * as React from 'react'
 
 const noop = () => {}
 
@@ -8,9 +9,18 @@ export interface SwitchProps extends React.HTMLProps<HTMLLabelElement> {
   onClick: () => void
 }
 
-export function Switch({ on, className = '', onClick, 'aria-label': ariaLabel, ...props }: SwitchProps) {
+export function Switch({
+  on,
+  className = '',
+  onClick,
+  'aria-label': ariaLabel,
+  ...props
+}: SwitchProps) {
   const btnClassName = React.useMemo(
-    () => [className, 'toggle-btn', on ? 'toggle-btn-on' : 'toggle-btn-off'].filter(Boolean).join(' '),
+    () =>
+      [className, 'toggle-btn', on ? 'toggle-btn-on' : 'toggle-btn-off']
+        .filter(Boolean)
+        .join(' '),
     [on]
   )
 
