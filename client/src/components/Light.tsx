@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { Switch } from '../components/Switch'
+import { Range } from '../components/Range'
 import useDeferredEffect from '../hooks/useDeferredEffect'
 
 interface LightProps {
@@ -30,18 +31,22 @@ export const Light: React.FunctionComponent<LightProps> = ({
   }, [state])
 
   return (
-    <div>
-      <p>{light.name}</p>
-      <Switch on={state.on} onClick={toggleLight} />
-      <input
-        type="range"
-        name="brightness"
-        min="1"
-        max="254"
-        step="1"
-        value={state.bri}
-        onChange={setLightBrightness}
-      />
+    <div className="box shadow">
+      <div className="flex flex-row" style={{ padding: '1em' }}>
+        <div className="light-info flex-grow">
+          <p>{light.name}</p>
+        </div>
+        <Switch on={state.on} onClick={toggleLight} />
+      </div>
+      <div className="flex flex-row">
+        <Range
+          min={1}
+          max={254}
+          step={1}
+          value={state.bri}
+          onChange={setLightBrightness}
+        />
+      </div>
     </div>
   )
 }

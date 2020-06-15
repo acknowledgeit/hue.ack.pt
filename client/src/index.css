@@ -25,6 +25,29 @@ hr {
   color: #a0aec0;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex-row  {
+  flex-direction: row;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.box {
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 .bridge-info {
   border: solid 1px rgba(0, 0, 0, 0.1);
   border-radius: 0.3em;
