@@ -10,7 +10,6 @@ interface DashboardProps {
 
 export const Dashboard: React.FunctionComponent<DashboardProps> = ({
   cache,
-  setCache,
 }) => {
   let { bridgeId } = useParams()
   const [lights, setLights] = useState<{ [id: string]: Light }>({})
