@@ -9,13 +9,13 @@ export interface SwitchProps extends React.HTMLProps<HTMLLabelElement> {
   onClick: () => void
 }
 
-export function Switch({
+export const Switch = ({
   on,
   className = '',
   onClick,
   'aria-label': ariaLabel,
   ...props
-}: SwitchProps) {
+}: SwitchProps) => {
   const btnClassName = React.useMemo(
     () =>
       [className, 'toggle-btn', on ? 'toggle-btn-on' : 'toggle-btn-off']
