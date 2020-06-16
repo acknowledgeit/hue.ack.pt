@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './Range.styles.css'
+import './range.styles.css'
 
 export interface RangeProps {
   min: number
