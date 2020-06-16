@@ -36,6 +36,7 @@ const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
             })
           )
 
+          setCache(bridgesDetails)
           setBridges(bridgesDetails)
         } catch (error) {
           console.error(error)

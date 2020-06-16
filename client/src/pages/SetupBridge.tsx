@@ -4,15 +4,6 @@ import Bridge from '../components/Bridge'
 import Config from '../shared/config'
 import { useParams } from 'react-router-dom'
 
-interface BridgeInfo {
-  id: string
-  internalipaddress: string
-}
-
-interface BridgeDetails extends BridgeInfo {
-  name: string
-}
-
 interface SetupProps {
   cache: any
   setCache: any
@@ -42,7 +33,7 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
     }, Config.SETUP_POLLING_DELAY)
   }
 
-  async function getUsername(bridge: BridgeDetails): Promise<boolean> {
+  async function getUsername(bridge: Bridge): Promise<boolean> {
     let response = await fetch(`https://${bridge.internalipaddress}/api`, {
       method: 'POST',
       body: JSON.stringify({
@@ -56,6 +47,10 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
       if (item.success) {
         console.log('Success!')
         console.log('Username: ', item.sucess.username)
+
+        bridge.username = item.sucess.username
+        // TODO: Persist to cache
+
         return true
       } else {
         console.error(item.error.description)
