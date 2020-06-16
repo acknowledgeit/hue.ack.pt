@@ -36,7 +36,8 @@ const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
             })
           )
 
-          setCache(bridgesDetails)
+          // TODO: Partial update to cache?
+          setCache({ ...cache, bridges: bridgesDetails })
           setBridges(bridgesDetails)
         } catch (error) {
           console.error(error)
