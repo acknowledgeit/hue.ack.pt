@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "build": "npm run type-check && parcel build ./src/index.html --public-url '/'",
+    "build": "parcel build ./src/index.html --public-url '/'",
     "test": "jest",
     "test:watch": "jest --watch"
   },
