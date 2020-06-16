@@ -49,7 +49,9 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
         console.log('Username: ', item.sucess.username)
 
         bridge.username = item.sucess.username
-        // TODO: Persist to cache
+
+        // persist to cache
+        setCache(cache)
 
         return true
       } else {
