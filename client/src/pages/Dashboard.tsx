@@ -19,7 +19,7 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
   useEffect(() => {
     const fetchLights = async () => {
       const response = await fetch(
-        `http://${bridge.internalipaddress}/api/${bridge.username}/lights`
+        `https://${bridge.internalipaddress}/api/${bridge.username}/lights`
       )
       const lightsData = await response.json()
       setLights(lightsData)
@@ -31,7 +31,7 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
   const handleLightChange = async (id: any, state: any) => {
     // persist state to bridge
     const request = await fetch(
-      `http://${bridge.internalipaddress}/api/${bridge.username}/lights/${id}/state`,
+      `https://${bridge.internalipaddress}/api/${bridge.username}/lights/${id}/state`,
       {
         method: 'PUT',
         body: JSON.stringify({

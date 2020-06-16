@@ -43,7 +43,7 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
   }
 
   async function getUsername(bridge: BridgeDetails): Promise<boolean> {
-    let response = await fetch(`http://${bridge.internalipaddress}/api`, {
+    let response = await fetch(`https://${bridge.internalipaddress}/api`, {
       method: 'POST',
       body: JSON.stringify({
         devicetype: Config.APP_NAME,

@@ -25,7 +25,7 @@ const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
           // expand with details for each bridge
           let bridgesDetails = await Promise.all(
             bridgesJSON.map(async (bridgeInfo: Bridge) => {
-              const configURL = `http://${bridgeInfo.internalipaddress}/api/config`
+              const configURL = `https://${bridgeInfo.internalipaddress}/api/config`
               let response = await fetch(configURL)
               let bridgeConfig = (await response.json()) as Bridge
 
