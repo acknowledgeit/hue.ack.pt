@@ -32,9 +32,12 @@ export const Light: React.FunctionComponent<LightProps> = ({
 
   return (
     <div className="box shadow">
-      <div className="flex flex-row" style={{ padding: '1em' }}>
+      <div
+        className="flex flex-row"
+        style={{ padding: '1em', alignItems: 'center' }}
+      >
         <div className="light-info flex-grow">
-          <p>{light.name}</p>
+          <span>{light.name}</span>
         </div>
         <Switch on={state.on} onClick={toggleLight} />
       </div>
