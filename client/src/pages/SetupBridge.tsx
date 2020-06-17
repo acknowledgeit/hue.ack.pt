@@ -45,10 +45,7 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
 
     json.map((item: any) => {
       if (item.success) {
-        console.log('Success!')
-        console.log('Username: ', item.sucess.username)
-
-        bridge.username = item.sucess.username
+        bridge.username = item.success.username
 
         // persist to cache
         setCache(cache)
