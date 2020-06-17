@@ -46,14 +46,16 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
     <>
       <h3>Lights</h3>
 
-      {Object.entries(lights).map(([key, value]) => (
-        <Light
-          key={key}
-          id={key}
-          light={value}
-          onChange={(state) => handleLightChange(key, state)}
-        />
-      ))}
+      <div className="lights-container">
+        {Object.entries(lights).map(([key, value]) => (
+          <Light
+            key={key}
+            id={key}
+            light={value}
+            onChange={(state) => handleLightChange(key, state)}
+          />
+        ))}
+      </div>
     </>
   )
 }
