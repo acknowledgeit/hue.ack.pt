@@ -52,15 +52,15 @@ const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
 
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <p className="muted">
           Looking for Hue bridges available in your network...
         </p>
+      ) : bridges.length ? (
+        bridges.map((bridge, index) => <Bridge key={index} bridge={bridge} />)
+      ) : (
+        <p className="muted">Could not find any Hue bridges in your network</p>
       )}
-
-      {bridges.map((bridge, index) => (
-        <Bridge key={index} bridge={bridge} />
-      ))}
     </>
   )
 }

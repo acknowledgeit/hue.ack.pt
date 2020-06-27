@@ -10,11 +10,7 @@ interface LightProps {
   onChange: (state: any) => void
 }
 
-export const Light: React.FunctionComponent<LightProps> = ({
-  id,
-  light,
-  onChange,
-}) => {
+export const Light: React.FC<LightProps> = ({ id, light, onChange }) => {
   const [state, SetState] = useState(light.state)
 
   const setLightBrightness = (event: React.ChangeEvent<HTMLInputElement>) => {

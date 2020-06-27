@@ -1,5 +1,10 @@
 import React from 'react'
 
-export const Scene: React.FunctionComponent = (props) => {
-  return <div>Scene</div>
+interface SceneProps {
+  id: string
+  scene: Scene
+}
+
+export const Scene: React.FC<SceneProps> = ({ id, scene }) => {
+  return <div>Scene {scene.name}</div>
 }
