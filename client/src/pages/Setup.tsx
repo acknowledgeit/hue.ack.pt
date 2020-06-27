@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Bridge from '../components/Bridge'
 import Config from '../shared/config'
@@ -8,7 +8,7 @@ interface SetupProps {
   setCache: any
 }
 
-const Setup: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
+const Setup: React.FC<SetupProps> = ({ cache, setCache }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [bridges, setBridges] = useState<Bridge[]>([])
 

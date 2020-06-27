@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom'
 
 import { Light } from '../components/Light'
 import { Scene } from '../components/Scene'
-import { Tracing } from 'trace_events'
+
+import * as hueBridgeClient from '../client/hueClient'
 
 interface DashboardProps {
   cache: any
   setCache: any
 }
 
-export const Dashboard: React.FunctionComponent<DashboardProps> = ({
-  cache,
-}) => {
+export const Dashboard: React.FC<DashboardProps> = ({ cache }) => {
   let { bridgeId } = useParams()
   const [lights, setLights] = useState<{ [id: string]: Light }>({})
   const [scenes, setScenes] = useState<{ [id: string]: Scene }>({})
@@ -21,11 +20,12 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
 
   useEffect(() => {
     const fetchLights = async () => {
-      const response = await fetch(
-        `https://${bridge.internalipaddress}/api/${bridge.username}/lights`
+      setLights(
+        await hueBridgeClient.getLights(
+          bridge.internalipaddress,
+          bridge.username
+        )
       )
-      const lightsData = await response.json()
-      setLights(lightsData)
     }
 
     fetchLights()
@@ -33,40 +33,23 @@ export const Dashboard: React.FunctionComponent<DashboardProps> = ({
 
   useEffect(() => {
     const fetchScenes = async () => {
-      const response = await fetch(
-        `https://${bridge.internalipaddress}/api/${bridge.username}/scenes`
+      setScenes(
+        await hueBridgeClient.getScenes(
+          bridge.internalipaddress,
+          bridge.username
+        )
       )
-      const scenesData = (await response.json()) as { [id: string]: Scene }
-
-      let scenesArr = Object.entries(scenesData).map(([id, scene]) => {
-        return {
-          ...scene,
-          id,
-        }
-      })
-
-      scenesArr = scenesArr.filter((scene) => !scene.recycle)
-
-      const filteredScenes = Object.fromEntries(
-        Object.entries(scenesData).filter(([key, scene]) => !scene.recycle)
-      )
-      setScenes(filteredScenes)
     }
 
     fetchScenes()
   }, [])
 
   const handleLightChange = async (id: any, state: any) => {
-    // persist state to bridge
-    const request = await fetch(
-      `https://${bridge.internalipaddress}/api/${bridge.username}/lights/${id}/state`,
-      {
-        method: 'PUT',
-        body: JSON.stringify({
-          on: state.on,
-          bri: Number(state.bri),
-        }),
-      }
+    hueBridgeClient.updateLight(
+      bridge.internalipaddress,
+      bridge.username,
+      id,
+      state
     )
   }
 
