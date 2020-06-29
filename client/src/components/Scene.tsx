@@ -5,6 +5,8 @@ interface SceneProps {
   scene: Scene
 }
 
-export const Scene: React.FC<SceneProps> = ({ id, scene }) => {
-  return <div>Scene {scene.name}</div>
+export const Scene: React.FC<SceneProps> = ({ scene }) => {
+  return <div>{scene.name}</div>
 }
+
+export default Scene

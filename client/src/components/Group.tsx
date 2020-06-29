@@ -1,5 +1,12 @@
 import React from 'react'
 
-export const Group: React.FunctionComponent = (props) => {
-  return <div>Group</div>
+interface GroupProps {
+  id: string
+  group: Group
 }
+
+export const Group: React.FC<GroupProps> = ({ group }) => {
+  return <div>{group.name}</div>
+}
+
+export default Group

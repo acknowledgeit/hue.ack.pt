@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { Light } from '../components/Light'
 import { Scene } from '../components/Scene'
+import Group from '../components/Group'
 
 import * as hueBridgeClient from '../client/hueClient'
 
@@ -14,9 +15,10 @@ interface DashboardProps {
 export const Dashboard: React.FC<DashboardProps> = ({ cache }) => {
   let { bridgeId } = useParams()
   const [lights, setLights] = useState<{ [id: string]: Light }>({})
+  const [groups, setGroups] = useState<{ [id: string]: Group }>({})
   const [scenes, setScenes] = useState<{ [id: string]: Scene }>({})
 
-  const bridge = cache.bridges.find((b: any) => b.id == bridgeId)
+  const bridge = cache.bridges.find((b: Bridge) => b.id == bridgeId)
 
   useEffect(() => {
     const fetchLights = async () => {
@@ -29,6 +31,19 @@ export const Dashboard: React.FC<DashboardProps> = ({ cache }) => {
     }
 
     fetchLights()
+  }, [])
+
+  useEffect(() => {
+    const fetchGroups = async () => {
+      setGroups(
+        await hueBridgeClient.getGroups(
+          bridge.internalipaddress,
+          bridge.username
+        )
+      )
+    }
+
+    fetchGroups()
   }, [])
 
   useEffect(() => {
@@ -72,12 +87,24 @@ export const Dashboard: React.FC<DashboardProps> = ({ cache }) => {
         )}
       </div>
 
-      <h3> Scenes </h3>
+      <h3>Groups</h3>
+
+      <div className="groups-container">
+        {Object.keys(groups).length ? (
+          Object.entries(groups).map(([key, group]) => (
+            <Group key={key} id={key} group={group} />
+          ))
+        ) : (
+          <p className="muted">No groups</p>
+        )}
+      </div>
+
+      <h3>Scenes</h3>
 
       <div className="scenes-container">
         {Object.keys(scenes).length ? (
-          Object.entries(scenes).map(([key, value]) => (
-            <Scene key={key} id={key} scene={value} />
+          Object.entries(scenes).map(([key, scene]) => (
+            <Scene key={key} id={key} scene={scene} />
           ))
         ) : (
           <p className="muted">No scenes</p>

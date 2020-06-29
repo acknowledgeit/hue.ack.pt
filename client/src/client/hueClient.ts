@@ -1,6 +1,14 @@
 const baseUrl = (ip: string, username: string) =>
   `https://${ip}/api/${username}`
 
+export const getGroups = async (
+  ip: string,
+  username: string
+): Promise<{ [id: string]: Group }> => {
+  const response = await fetch(baseUrl(ip, username) + '/groups')
+  return response.json()
+}
+
 export const getScenes = async (
   ip: string,
   username: string

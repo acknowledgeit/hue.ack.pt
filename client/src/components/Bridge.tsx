@@ -5,7 +5,7 @@ interface BridgeProps {
   bridge: Bridge
 }
 
-export const Bridge: React.FunctionComponent<BridgeProps> = ({ bridge }) => {
+export const Bridge: React.FC<BridgeProps> = ({ bridge }) => {
   const history = useHistory()
 
   function setupBridge() {
