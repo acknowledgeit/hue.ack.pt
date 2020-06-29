@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import Bridge from '../components/Bridge'
+import Halo from '../components/Halo'
 import Config from '../shared/config'
-import { useParams } from 'react-router-dom'
 
 interface SetupProps {
   cache: any
@@ -64,7 +65,12 @@ const SetupBridge: FunctionComponent<SetupProps> = ({ cache, setCache }) => {
       {isSetup ? (
         <p>Thanks, we're done here!</p>
       ) : (
-        <p>Now go click on the button in the bridge. I'll wait</p>
+        <div className="text-center">
+          <Halo />
+          <p className="muted">
+            Now go click on the button in the bridge. I'll wait
+          </p>
+        </div>
       )}
     </>
   )
